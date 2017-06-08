@@ -12,7 +12,7 @@ installation:
 partition 64gb sd card into a FAT32 boot partition (4GB?) and an exFAT partition with the remaining space.
 see: https://www.raspberrypi.org/documentation/installation/sdxc_formatting.md
 
-burn raspbian jessie lite to SD card
+burn raspbian jessie lite img to SD card
 sudo apt-get install fbi
 sudo apt-get install omxplayer
 
