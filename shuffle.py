@@ -7,13 +7,18 @@ import random
 import time
 from threading import Thread
 
-buttonPin = 27 #pin#13
-directory = "/home/pi/videos/"
+# constants
+buttonPin = 27                  # pin #13          
+directory = "/home/pi/videos/"  # vid dir
+btnDblBounceLimit = 0.15        # ignore dbl bounces on the button
+btnAddToQueueTimeLimit = 2      # button presses within 2s of each other
+
+# init
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(buttonPin, GPIO.IN)
 lastPressed = time.time()
 q = Queue.Queue();
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(buttonPin, GPIO.IN)
 
 def worker():
     while True:
@@ -38,26 +43,23 @@ while True:
     #raw_input("")
     timeSinceLast = (time.time()-lastPressed)
     
-    if timeSinceLast < 0.15:
-#	print '*** double bounce caught, ignoring', timeSinceLast
-	continue
-    elif timeSinceLast < 1:
-#	print 'queueing up next episode', timeSinceLast
-	q.put(random.choice(os.listdir(directory)))
+    if timeSinceLast < btnDblBounceLimit:
+        # print '*** double bounce caught, ignoring', timeSinceLast
+        continue
+    elif timeSinceLast < btnAddToQueueTimeLimit:
+        # print 'queueing up next episode', timeSinceLast
+        q.put(random.choice(os.listdir(directory)))
     else:
-#        print 'clearing queue and starting over', timeSinceLast
-	with q.mutex:
-    	    q.queue.clear()
-	q.put(random.choice(os.listdir(directory)))
-	
+        # print 'clearing queue and starting over', timeSinceLast
+        with q.mutex:
+            q.queue.clear()
+        q.put(random.choice(os.listdir(directory)))
 
-    for elem in list(q.queue):
-	print 'queue->', elem
-
+#    print "queue:"	
+#    for elem in list(q.queue):
+#    	print 'queue->', elem
+#    print "end."
     lastPressed = time.time()
-    #print 'time since last press', (time.time()-lastPressed)
-    #lastPressed = time.time()
-    #q.put("pressed")
 
 print '*** Main thread waiting'
 q.join()
