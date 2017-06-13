@@ -27,7 +27,7 @@ add below to .profile
 # start splash screen if not already running
 F_COUNT=$(pgrep fbi | wc -l)
 if [ "$F_COUNT" -eq "0" ]; then
-    sudo fbi -T 7 -t 4 -noverbose -a /home/pi/splash/*.jpg
+    sudo fbi -T 7 -t 4 -noverbose -a /home/pi/splash/*.*
 #else
 #    echo "$F_COUNT fbi procs running"
 fi
