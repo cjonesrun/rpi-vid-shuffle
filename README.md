@@ -1,11 +1,14 @@
 generic rpi video shuffler.
 
+- single button press plays a random video.
+- pressing again within 2 seconds will add another random video to the playlist
+- after 2 seconds, button press will stop current video, clear playlist and start a new random video.
+
+RPI GPIO pin layout info:
+https://pinout.xyz/
+
 idea from:
 http://stephencoyle.net/the-pi-zero-simpsons-shuffler/
-
-usage:
-single press starts a random episode
-subsequent presses within 2s add another random episode to the queue. queue up N episodes at a time.
 
 installation:
 burn raspbian jessie lite img to 64gb SD card
@@ -40,3 +43,7 @@ if [ "$S_COUNT" -eq "0" ]; then
 #    echo "$S_COUNT shuffle.py procs running"
 fi
 
+
+momentary button:
+solder momentary button to desired GPIO pin, ground and 3.3v. 
+see circuit diagram: button-schematic.png
