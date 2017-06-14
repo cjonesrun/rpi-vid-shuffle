@@ -27,23 +27,23 @@ copy videos to videos/
 
 add below to .profile
 
-# start splash screen if not already running
+- starts splash screen if not already running
 F_COUNT=$(pgrep fbi | wc -l)
 if [ "$F_COUNT" -eq "0" ]; then
     sudo fbi -T 7 -t 4 -noverbose -a /home/pi/splash/*.*
-#else
-#    echo "$F_COUNT fbi procs running"
+else
+    echo "$F_COUNT fbi procs running"
 fi
 
-# start shuffle if not already running
+- starts shuffle if not already running
 S_COUNT=$(pgrep shuffle.py | wc -l)
 if [ "$S_COUNT" -eq "0" ]; then
     /home/pi/shuffle.py
-#else
-#    echo "$S_COUNT shuffle.py procs running"
+else
+    echo "$S_COUNT shuffle.py procs running"
 fi
 
 
 momentary button:
-solder momentary button to desired GPIO pin, ground and 3.3v. 
+solder momentary button to desired GPIO pin, ground and 3.3v w/ 10kohm R.
 see circuit diagram: button-schematic.png
