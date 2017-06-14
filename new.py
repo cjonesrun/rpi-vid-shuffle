@@ -36,7 +36,8 @@ def consumer():
 
 def keyPress():
     while True:
-        raw_input()
+        x = raw_input()
+        print x
         fired()
 
 def fired():
@@ -58,17 +59,29 @@ def fired():
     print '-->adding item to queue', (1+q.qsize())
     q.put(lastPressed)
 
-# hook GPIO pin waiting here to call fired()
 
-# start up a consumer thread thread to grab queued events
-t = Thread(target=consumer)
-t.daemon = True
-t.start()
+def main():
+    try:
+        # hook GPIO pin waiting here to call fired()
 
-# start up a worker thread to listen for key presses
-t2 = Thread(target=keyPress)
-t2.daemon = True
-t2.start()
+        # start up a consumer thread thread to grab queued events
+        t = Thread(target=consumer)
+        t.daemon = True
+        t.start()
 
-# wait for consumer thread to be done.
-t.join()
+        # start up a worker thread to listen for key presses
+        t2 = Thread(target=keyPress)
+        t2.daemon = True
+        t2.start()
+
+        # wait for consumer thread to be done.
+        t.join()
+
+        time.sleep(10)
+    except KeyboardInterrupt:
+        print "stopping"
+    except Exception:
+        print "exception"
+
+if __name__ == '__main__':
+    main()
