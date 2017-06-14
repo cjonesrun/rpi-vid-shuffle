@@ -10,7 +10,7 @@ https://pinout.xyz/
 idea from:
 http://stephencoyle.net/the-pi-zero-simpsons-shuffler/
 
-installation:
+installation:\n
 burn raspbian jessie lite img to 64gb SD card
 sudo apt-get install fbi
 sudo apt-get install omxplayer
