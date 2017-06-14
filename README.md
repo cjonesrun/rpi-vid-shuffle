@@ -28,6 +28,7 @@ copy videos to videos/
 add below to .profile
 
 - starts splash screen if not already running
+
 F_COUNT=$(pgrep fbi | wc -l)
 if [ "$F_COUNT" -eq "0" ]; then
     sudo fbi -T 7 -t 4 -noverbose -a /home/pi/splash/*.*
@@ -36,6 +37,7 @@ else
 fi
 
 - starts shuffle if not already running
+
 S_COUNT=$(pgrep shuffle.py | wc -l)
 if [ "$S_COUNT" -eq "0" ]; then
     /home/pi/shuffle.py
