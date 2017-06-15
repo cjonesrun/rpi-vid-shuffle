@@ -16,8 +16,9 @@ sudo apt-get install fbi
 sudo apt-get install omxplayer
 
 put video files in ~/videos/
-put splash screen images in ~/splash/
-put shuffle.py in ~/
+copy splash screen images in ~/splash/
+copy shuffle.py in ~/
+copy log.conf  in ~/
 update .profile (see below)
 
 set rpi to auto login via raspi-config
