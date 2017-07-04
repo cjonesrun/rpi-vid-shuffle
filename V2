@@ -1,0 +1,17 @@
+New python script flow:
+
+1. wait at splash
+2. single press -> MODE_PLAY
+3. play expisode
+4. play finished, goto 1.
+
+5. double press -> MODE_CONTINUOUS
+6. play random episode
+7. play finished, goto 6.
+
+- while in MODE_PLAY or MODE_CONTINUOUS
+8. single press, goto 1.
+9. ignore all others.
+
+Other:
+- have a limit for MODE_CONTINUOUS (say, 5 episodes), so it doesn't play forever 
